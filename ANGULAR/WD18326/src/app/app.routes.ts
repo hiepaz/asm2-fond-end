@@ -1,0 +1,85 @@
+import { Routes } from '@angular/router';
+import { ListComponent } from './list/list.component';
+import { CreateComponent } from './create/create.component';
+import { DetailComponent } from './detail/detail.component';
+import { EditComponent } from './edit/edit.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { AppComponent } from './app.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { UsersComponent } from './users/users.component';
+
+import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { canActivateGuardGuard } from './can-truong.guard';
+
+
+export const routes: Routes = [
+    {
+        path:'register',
+        component:RegisterComponent,
+    },
+    {
+        path:'login',
+        component:LoginComponent,
+    },
+    {
+        path:'home',
+        component: HomeComponent,
+        title:'Home',
+
+       
+    },
+    {
+        path: 'list',
+        component: ListComponent,
+        title: 'List',
+        canActivate: [canActivateGuardGuard] //khai báo guard bảo vệ cho route hiện tại
+        //typeGuard: [tenGuard]
+
+       
+    },
+    
+    {
+        path:'create',
+        component: CreateComponent,
+        title:'Create',
+    },
+    {
+        path:'detail/:user',
+        component: DetailComponent,
+        title:'Detail',
+    },
+    {
+        path:'edit/:project',
+        component: EditComponent,
+        title:'Edit',
+    },
+
+    {
+        path: 'admin',
+        canActivateChild: [canActivateGuardGuard],
+        children: [
+            {
+                path: 'projects',
+                children: [
+                    {
+                        path: 'list',
+                        component: ListComponent,
+                    }
+                ],
+            },
+            {
+                path: 'users',
+                component: UsersComponent,
+            }
+        ]
+
+    },
+    
+    {
+        path:'**', //Xử lí khi người dùng nhập vào một route không hợp lệ
+        component: NotFoundComponent,
+    },
+   
+];

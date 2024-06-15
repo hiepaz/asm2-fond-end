@@ -1,0 +1,90 @@
+<main>
+  <header>
+    <div class="px-3 py-2 bg-dark text-white">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+            <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+              <use xlink:href="#bootstrap" />
+            </svg>
+          </a>
+
+          <header>
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+              <div class="container-fluid">
+
+                <div class="collapse navbar-collapse">
+                  <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                      <a class="nav-link " href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/list">List</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/register">Register</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/create">Add</a>
+                    </li>
+
+                  </ul>
+                  <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+                </div>
+              </div>
+            </nav>
+          </header>
+        </div>
+      </div>
+    </div>XZ
+    *
+
+  </header>
+
+
+</main>
+
+
+<div class="container col-12">
+  <table class="table">
+
+    
+    <thead>
+      <tr>
+
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(item of listProjects; track item.name){
+        <tr>
+
+          <td>{{item.name}}</td>
+          <td>{{item.description}}</td>
+          <td>{{item.price}}</td>
+          <td><img src="{{item.image}}" alt=""></td>
+          <td>
+            <a class="btn btn-danger" (click)="onDelete(item.id)">Delete</a>
+            <a class="btn btn-info mx-2" [routerLink]="['/detail',item.id]">
+              Detail
+            </a>
+            <a class="btn btn-warning" [routerLink]="['/edit',item.id]">Edit</a>
+  
+          </td>
+        </tr>
+      }
+     
+    
+
+    </tbody>
+  </table>
+</div>
